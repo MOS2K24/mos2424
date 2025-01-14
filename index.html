@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://db.onlinewebfonts.com/c/97c4b25dc74e0ab045154e75a8fdd69d?family=Game+of+Thrones" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CustomEase.min.js"></script>
+    <title>MOS2K24</title>
+    <style>
+
+.slider-container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 500px;
+  position: relative;
+}
+
+.slide {
+  min-width: 100%;
+  height: 500px;
+  background-size: contain; /* Scale image to fit the container */
+  background-position: center;
+  background-repeat: no-repeat; /* Prevent tiling */
+  transition: transform 0.5s ease-in-out;
+}
+
+
+.navigation {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.arrow {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.arrow:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+@media (max-width: 768px) {
+  .slider-container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  img{
+    margin-top: -1000px;
+  }
+
+  header, .parent-container {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+
+
+
+          </style>
+    
+</head>
+<body>
+
+    
+    <nav id="navbar">
+        <a href="#" id="logo">
+          <img src="img/logo.png" alt="Logo" style="max-height: 50px" />
+        </a>
+        <div id="menu-toggle">&#9776;</div>
+        <div id="nav-links">
+          <a href="index.html">Home</a>
+          <a href="registration.html">Registration</a>
+          <a href="octeam.html">OC Team</a>
+          <a href="memories.html">Memories</a>
+        </div>
+        <div id="mobile-menu">
+          <a href="index.html">Home</a>
+          <a href="registration.html">Registration</a>
+          <a href="octeam.html">OC Team</a>
+          <a href="memories.html">Memories</a>
+        </div>
+      </nav>
+    <div class="floating-header">
+        <h1>Welcome to MOS 2K24</h1>
+        <div class="countdown" id="countdown">
+            Loading...
+          </div>
+    </div>
+    
+    <div class="slider-container">
+        <div class="slide" style="background-image: url('img/1.jpg')"></div>
+        <div class="slide" style="background-image: url('img/2.jpg')"></div>
+        <div class="slide" style="background-image: url('img/3.jpg')"></div>
+        <div class="slide" style="background-image: url('img/4.jpg')"></div>
+        <div class="slide" style="background-image: url('img/5.jpg')"></div>
+        <div class="slide" style="background-image: url('img/6.jpg')"></div>
+        <div class="slide" style="background-image: url('img/7.jpg')"></div>
+        <div class="slide" style="background-image: url('img/8.jpg')"></div>
+        <div class="slide" style="background-image: url('img/9.jpg')"></div>
+      
+        <div class="overlay"></div>
+      </div>
+      
+      <div class="navigation">
+        <button class="arrow left">&#8592;</button>
+        <button class="arrow right">&#8594;</button>
+      </div>
+      
+      <script>
+        const slides = document.querySelectorAll('.slide');
+let currentIndex = 0;
+
+function updateSlide(index) {
+  const offset = -index * 100; // Calculate the offset in percentage
+  slides.forEach(slide => {
+    slide.style.transform = `translateX(${offset}%)`;
+  });
+}
+
+document.querySelector('.arrow.left').addEventListener('click', () => {
+  currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+  updateSlide(currentIndex);
+});
+
+document.querySelector('.arrow.right').addEventListener('click', () => {
+  currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+  updateSlide(currentIndex);
+});
+
+    
+      </script>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+        });
+    </script>
+ <script>
+    // Target date
+    const targetDate = new Date('January 25, 2025 00:00:00').getTime();
+
+    // Update countdown every second
+    const interval = setInterval(() => {
+      const now = new Date().getTime(); // Current time
+      const distance = targetDate - now; // Time difference
+
+      // Calculate days, hours, minutes, seconds
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display result
+      document.getElementById('countdown').innerHTML = `
+        ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds
+      `;
+
+      // If the countdown is over
+      if (distance < 0) {
+        clearInterval(interval);
+        document.getElementById('countdown').innerHTML = "The countdown has ended!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CustomEase.min.js"></script>
+<link rel="stylesheet" href="css/main.css">
+
+  <title>MOS2K24</title>
+  <style>
+.floating-images {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-image {
+  position: absolute;
+  width: auto;
+  height: auto;
+  max-width: 250px; /* Default max width for PC */
+  max-height: 250px; /* Default max height for PC */
+  border: 10px solid white; /* White frame around the image */
+  border-radius: 10px; /* Optional: rounded corners for the frame */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: shadow effect for a floating look */
+  animation: floatAnimation 12s infinite;
+}
+
+/* Randomizing keyframes for different directions */
+@keyframes floatAnimation {
+  0% {
+    top: 10%;
+    left: 10%;
+    transform: rotate(0deg);
+  }
+  25% {
+    top: 30%;
+    left: 80%;
+    transform: rotate(90deg);
+  }
+  50% {
+    top: 50%;
+    left: 30%;
+    transform: rotate(180deg);
+  }
+  75% {
+    top: 70%;
+    left: 60%;
+    transform: rotate(270deg);
+  }
+  100% {
+    top: 10%;
+    left: 10%;
+    transform: rotate(360deg);
+  }
+}
+
+/* Adding unique timing and starting points for each image */
+.floating-image:nth-child(1) {
+  animation-duration: 12s;
+  animation-timing-function: ease-in-out;
+}
+
+.floating-image:nth-child(2) {
+  animation-duration: 15s;
+  animation-timing-function: linear;
+}
+
+.floating-image:nth-child(3) {
+  animation-duration: 18s;
+  animation-timing-function: ease-in;
+}
+
+/* Media Query for mobile devices (up to 768px wide) */
+@media (max-width: 768px) {
+  .floating-image {
+    max-width: 120px; /* Smaller size for mobile */
+    max-height: 120px; /* Smaller size for mobile */
+  }
+}
+
+  </style>
+</head>
+<body>
+    <nav id="navbar">
+      <a href="#" id="logo">
+        <img src="img/logo.png" alt="Logo" style="max-height: 50px" />
+      </a>
+      <div id="menu-toggle">&#9776;</div>
+      <div id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="registration.html">Registration</a>
+        <a href="octeam.html">OC Team</a>
+        <a href="memories.html">Memories</a>
+      </div>
+      <div id="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="registration.html">Registration</a>
+        <a href="octeam.html">OC Team</a>
+        <a href="memories.html">Memories</a>
+      </div>
+    </nav>
+ 
+
+  
+  <div class="floating-images">
+    <img src="img/a0e807cd-17dc-4f30-9b82-c83b4011bbff.jpg" alt="Image 1" class="floating-image">
+    <img src="img/c9a20c97-38a7-4fa0-885c-860f6dddeb6c.jpg" alt="Image 2" class="floating-image">
+    <img src="img/ecc89751-a577-4632-bee3-541ee646f46e.jpg" alt="Image 3" class="floating-image">
+  </div>
+      
+</body>
+</html>
