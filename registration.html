@@ -512,49 +512,40 @@ document.getElementById("clear-btn").addEventListener("click", () => {
 
     </script>
     <script>
-const form = document.getElementById("registration-form");
-const canvas2 = document.getElementById("signature-pad");
+   const form = document.getElementById("registration-form");
+    const canvas2 = document.getElementById("signature-pad");
+    form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+    // Convert the canvas2 content to Base64
+    const signatureDataUrl = canvas2.toDataURL();
 
-  // Disable the submit button to prevent multiple clicks
-  const submitButton = form.querySelector('button[type="submit"]');
-  submitButton.disabled = true;
+    // Append the signature data to the FormData object
+    const data = new FormData(form);
+    data.append("signature", signatureDataUrl);
 
-  // Convert the canvas2 content to Base64
-  const signatureDataUrl = canvas2.toDataURL();
-
-  // Append the signature data to the FormData object
-  const data = new FormData(form);
-  data.append("signature", signatureDataUrl);
-
-  // Send the form data using fetch
-  const action = e.target.action;
-  fetch(action, {
-    method: "POST",
-    body: data,
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json(); // or response.text() if the server returns plain text
+    // Send the form data using fetch
+    const action = e.target.action;
+    fetch(action, {
+      method: "POST",
+      body: data,
     })
-    .then((data) => {
-      // Redirect to thank_you.html on success
-      window.location.href = "thank_you.html";
-    })
-    .catch((error) => {
-      console.error("There was a problem with the fetch operation:", error);
-      alert(
-        "There was an error with the registration. Please try again."
-      );
-
-      // Re-enable the submit button if there's an error
-      submitButton.disabled = false;
-    });
-});
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json(); // or response.text() if the server returns plain text
+      })
+      .then((data) => {
+        alert("Success");
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+        alert(
+          "There was an error with the registration. Please try again."
+        );
+      });
+  });
 
           </script>
       <script>
