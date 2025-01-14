@@ -520,7 +520,7 @@ document.getElementById("clear-btn").addEventListener("click", () => {
         return response.json(); // or response.text() if the server returns plain text
       })
       .then((data) => {
-        alert("Success");
+        window.location.href = "thank_you.html";
       })
       .catch((error) => {
         console.error("There was a problem with the fetch operation:", error);
