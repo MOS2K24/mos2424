@@ -211,11 +211,12 @@
                 <div class="optionPos" data-value="Middle Managers Current">
                   Middle Managers Current
                 </div>
+                
                 <div class="optionPos" data-value="Middle Managers Select">
                   Middle Managers Select
                 </div>
-                <div class="optionPos" data-value="Middle Managers Select">
-                    Middle Managers Select
+                <div class="optionPos" data-value="Middle Managers Leaving">
+                    Middle Managers Leaving
                   </div>
               </div>
               <input
@@ -542,7 +543,7 @@ document.getElementById("clear-btn").addEventListener("click", () => {
     }
 
     // Limit the input to 11 characters (including +216)
-    if (value.length > 11) {
+    if (value.length > 12) {
       value = value.slice(0, 11);
     }
 
