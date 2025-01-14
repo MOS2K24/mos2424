@@ -359,17 +359,17 @@
       </div>
     </main>
     <script>
-        const termsCheckbox = document.getElementById("terms");
-        const submitButton = document.getElementById("submit-btn");
-      
-        termsCheckbox.addEventListener("change", () => {
-          submitButton.disabled = !termsCheckbox.checked;
-        });
-      form.addEventListener("submit", (event) => {
-    event.preventDefault(); // Prevent the default form submission
-    window.location.href = "thank_you.html"; // Redirect to the thank you page
+  const termsCheckbox = document.getElementById("terms");
+  const submitButton = document.getElementById("submit-btn");
+
+  termsCheckbox.addEventListener("change", () => {
+    submitButton.disabled = !termsCheckbox.checked;
   });
-      </script>
+
+  submitButton.addEventListener("click", () => {
+    submitButton.disabled = true; // Disable the button immediately after it's clicked
+  });
+</script>
 
     <script>
       const menuToggle = document.getElementById("menu-toggle");
