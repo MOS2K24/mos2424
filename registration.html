@@ -13,6 +13,55 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <style>
+        #file-upload-container {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            width: 100%; /* Ensure it takes full width */
+        }
+
+        #file-upload-input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        #file-upload-label {
+            display: flex;
+            align-items: center; /* Vertically align icon and text */
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: rgb(212, 175, 55);
+            background-color: transparent;
+            border: 1px solid rgb(212, 175, 55);
+            border-radius: .25rem;
+            text-align: left;
+            cursor: pointer;
+            justify-content: space-between; /* Space between text and icon */
+        }
+
+        #file-upload-label:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+            border-color: rgb(212, 175, 55);
+        }
+
+        #file-upload-label::after {
+            content: "\f093"; /* Upload icon from Font Awesome */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: rgb(212, 175, 55);
+        }
+    </style>
     <link rel="stylesheet" href="css/main.css" />
     <title>MOS2K24</title>
   </head>
@@ -59,6 +108,19 @@
             <label style="color: #b08d2a" for="email" class="form-label"
               >Email address</label
             >
+            div class="mb-3" id="file-upload-container">
+            <label style="color: #b08d2a" for="pic" class="form-label"
+              >Your Favorite Picture</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="pic"
+              name="pic"
+              placeholder="Google Drive Link"
+              required
+            />
+        </div>
             <input
               type="email"
               class="form-control"
@@ -493,5 +555,46 @@ document.getElementById("clear-btn").addEventListener("click", () => {
     }
   }
       </script>
+    <script>
+        const form = document.getElementById("registration-form");
+        const canvas2 = document.getElementById("signature-pad");
+        const fileInput2 = document.getElementById("file-upload-input");
+        form.addEventListener("submit", function (e) {
+        e.preventDefault();
+    
+        // Convert the canvas2 content to Base64
+        const signatureDataUrl = canvas2.toDataURL();
+        const file = fileInput2.files[0];
+        const reader = new FileReader();
+        const picDataUrl = reader.result;
+    
+        // Append the signature data to the FormData object
+        const data = new FormData(form);
+        data.append("signature", signatureDataUrl);
+        data.append("pic", picDataUrl);
+    
+        // Send the form data using fetch
+        const action = e.target.action;
+        fetch(action, {
+          method: "POST",
+          body: data,
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json(); // or response.text() if the server returns plain text
+          })
+          .then((data) => {
+            alert("Success");
+          })
+          .catch((error) => {
+            console.error("There was a problem with the fetch operation:", error);
+            alert(
+              "There was an error with the registration. Please try again."
+            );
+          });
+      });
+          </script>
   </body>
 </html>
