@@ -66,6 +66,24 @@
   }
 }
 
+.floating-header {
+  position: relative; /* Required for animation */
+  animation: float 3s ease-in-out infinite; /* Animation for floating */
+  color: #d4af37;
+  text-align: center;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0); /* Start at original position */
+  }
+  50% {
+    transform: translateY(-10px); /* Move up by 10px */
+  }
+  100% {
+    transform: translateY(0); /* Return to original position */
+  }
+}
 
 
 
