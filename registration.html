@@ -340,81 +340,107 @@
       );
     </script>
     <script>
-      const canvas = document.getElementById("signature-pad");
-      const context = canvas.getContext("2d");
-      let drawing = false;
-
-      // Set initial drawing properties
-      context.lineWidth = 3;
-      context.lineCap = "round";
-      context.strokeStyle = "#D4AF37"; // Gold color for signature
-
-      // Start drawing
-      canvas.addEventListener("mousedown", (e) => {
-        drawing = true;
-        context.beginPath();
-        context.moveTo(e.offsetX, e.offsetY);
-      });
-
-      // Draw on canvas
-      canvas.addEventListener("mousemove", (e) => {
-        if (drawing) {
-          context.lineTo(e.offsetX, e.offsetY);
-          context.stroke();
-        }
-      });
-
-      // Stop drawing
-      canvas.addEventListener("mouseup", () => {
-        drawing = false;
-      });
-
-      // Clear the canvas
-      document.getElementById("clear-btn").addEventListener("click", () => {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-      });
-    </script>
-    <script>
-      const form = document.getElementById("registration-form");
-      form.addEventListener("submit", function (e) {
-        const action = event.target.action;
-        e.preventDefault();
-        const data = new FormData(form);
-        fetch(action, {
-          method: "POST",
-          body: data,
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json(); // or response.text() if the server returns plain text
-          })
-          .then((data) => {
-            alert("Success");
-          })
-          .catch((error) => {
-            console.error(
-              "There was a problem with the fetch operation:",
-              error
-            );
-            alert(
-              "There was an error with the registration. Please try again."
-            );
-          });
-      });
-      /* const result = await response.json();
-    if (result.status === 'success') {
-      alert('Form submitted successfully!');
-    } */
-    </script>
-    <script>
-        const termsCheckbox = document.getElementById("terms");
-        const submitButton = document.getElementById("submit-btn");
       
-        termsCheckbox.addEventListener("change", () => {
-          submitButton.disabled = !termsCheckbox.checked;
-        });
+      const canvas = document.getElementById("signature-pad");
+const context = canvas.getContext("2d");
+let drawing = false;
+
+// Set initial drawing properties
+context.lineWidth = 3;
+context.lineCap = "round";
+context.strokeStyle = "#D4AF37"; // Gold color for signature
+
+// Function to get touch coordinates
+function getTouchPos(touchEvent) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: touchEvent.touches[0].clientX - rect.left,
+    y: touchEvent.touches[0].clientY - rect.top,
+  };
+}
+
+// Start drawing
+canvas.addEventListener("mousedown", (e) => {
+  drawing = true;
+  context.beginPath();
+  context.moveTo(e.offsetX, e.offsetY);
+});
+
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  drawing = true;
+  const touchPos = getTouchPos(e);
+  context.beginPath();
+  context.moveTo(touchPos.x, touchPos.y);
+});
+
+// Draw on canvas
+canvas.addEventListener("mousemove", (e) => {
+  if (drawing) {
+    context.lineTo(e.offsetX, e.offsetY);
+    context.stroke();
+  }
+});
+
+canvas.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+  if (drawing) {
+    const touchPos = getTouchPos(e);
+    context.lineTo(touchPos.x, touchPos.y);
+    context.stroke();
+  }
+});
+
+// Stop drawing
+canvas.addEventListener("mouseup", () => {
+  drawing = false;
+});
+
+canvas.addEventListener("touchend", () => {
+  drawing = false;
+});
+
+// Clear the canvas
+document.getElementById("clear-btn").addEventListener("click", () => {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+    </script>
+    <script>
+    const form = document.getElementById("registration-form");
+    const canvas2 = document.getElementById("signature-pad");
+    form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Convert the canvas2 content to Base64
+    const signatureDataUrl = canvas2.toDataURL();
+
+    // Append the signature data to the FormData object
+    const data = new FormData(form);
+    data.append("signature", signatureDataUrl);
+
+    // Send the form data using fetch
+    const action = e.target.action;
+    fetch(action, {
+      method: "POST",
+      body: data,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json(); // or response.text() if the server returns plain text
+      })
+      .then((data) => {
+        alert("Success");
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+        alert(
+          "There was an error with the registration. Please try again."
+        );
+      });
+  });
       </script>
   </body>
 </html>
