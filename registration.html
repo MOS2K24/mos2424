@@ -282,6 +282,15 @@
     </main>
 
     <script>
+        const termsCheckbox = document.getElementById("terms");
+        const submitButton = document.getElementById("submit-btn");
+      
+        termsCheckbox.addEventListener("change", () => {
+          submitButton.disabled = !termsCheckbox.checked;
+        });
+      </script>
+
+    <script>
       const menuToggle = document.getElementById("menu-toggle");
       const mobileMenu = document.getElementById("mobile-menu");
 
