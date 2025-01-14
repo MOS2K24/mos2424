@@ -168,6 +168,24 @@
             />
           </div>
           <div class="mb-3">
+            <label
+              style="color: #b08d2a"
+              for="CIN"
+              class="form-label"
+              >CIN</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="CIN"
+              name="CIN"
+              placeholder="Enter your CIN Number"
+              required
+              maxlength="8"
+              onkeypress="allowOnlyNumbers(event)"
+            />
+          </div>
+          <div class="mb-3">
             <label style="color: #b08d2a" for="subject" class="form-label"
               >Department</label
             >
@@ -552,6 +570,7 @@ document.getElementById("clear-btn").addEventListener("click", () => {
 
   // Ensure the initial value is correct for both inputs
   document.getElementById('phone').value = '+216';
+  document.getElementById('CIN').value = '';
   document.getElementById('emergencyPhone').value = '+216';
   function allowOnlyNumbers(event) {
     const charCode = event.which || event.keyCode;
