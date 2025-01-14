@@ -363,6 +363,10 @@
         termsCheckbox.addEventListener("change", () => {
           submitButton.disabled = !termsCheckbox.checked;
         });
+      form.addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    window.location.href = "thank_you.html"; // Redirect to the thank you page
+  });
       </script>
 
     <script>
