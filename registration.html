@@ -79,6 +79,10 @@
               name="phone"
               placeholder="Enter your Phone Number"
               required
+              maxlength="11"
+              oninput="validatePhoneInput(this)"
+              onkeypress="allowOnlyNumbers(event)"
+              value="+216"
             />
           </div>
           <div class="mb-3">
@@ -95,6 +99,10 @@
               name="emergencyPhone"
               placeholder="Enter your Emergency Phone Number"
               required
+              maxlength="11"
+              oninput="validatePhoneInput(this)"
+              onkeypress="allowOnlyNumbers(event)"
+              value="+216"
             />
           </div>
           <div class="mb-3">
@@ -128,6 +136,9 @@
             <div class="custom-select">
               <div class="select-button" id="selectButtonPos">Select</div>
               <div class="select-options" id="selectOptionsPos">
+                <div class="optionPos" data-value="Newbie">
+                    Newbie
+                  </div>
                 <div class="optionPos" data-value="Members Staying">
                   Members Staying
                 </div>
@@ -140,6 +151,9 @@
                 <div class="optionPos" data-value="Middle Managers Select">
                   Middle Managers Select
                 </div>
+                <div class="optionPos" data-value="Middle Managers Select">
+                    Middle Managers Select
+                  </div>
               </div>
               <input
                 type="hidden"
@@ -262,7 +276,7 @@
             <label style="color: white" class="form-check-label" for="terms"
               >I agree to the
               <a
-                href="_Indemnity Form MOS 2k24.html"
+                href="_Indemnity Form MOS 2k24.pdf"
                 style="color: rgb(212, 175, 55); text-decoration: none"
                 target="_blank"
                 >Terms of Use</a
@@ -280,7 +294,6 @@
         </form>
       </div>
     </main>
-
     <script>
         const termsCheckbox = document.getElementById("terms");
         const submitButton = document.getElementById("submit-btn");
@@ -450,6 +463,34 @@ document.getElementById("clear-btn").addEventListener("click", () => {
         );
       });
   });
+      </script>
+      <script>
+        function validatePhoneInput(input) {
+    const prefix = '+216';
+    let value = input.value;
+
+    // Make sure the value starts with '+216' and only allow the user to input 8 digits afterward
+    if (!value.startsWith(prefix)) {
+      value = prefix + value.replace(prefix, '');
+    }
+
+    // Limit the input to 11 characters (including +216)
+    if (value.length > 11) {
+      value = value.slice(0, 11);
+    }
+
+    input.value = value;
+  }
+
+  // Ensure the initial value is correct for both inputs
+  document.getElementById('phone').value = '+216';
+  document.getElementById('emergencyPhone').value = '+216';
+  function allowOnlyNumbers(event) {
+    const charCode = event.which || event.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
       </script>
   </body>
 </html>
