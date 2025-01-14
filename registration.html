@@ -512,16 +512,15 @@ document.getElementById("clear-btn").addEventListener("click", () => {
 
     </script>
     <script>
-    const form = document.getElementById("registration-form");
+const form = document.getElementById("registration-form");
 const canvas2 = document.getElementById("signature-pad");
-const submitButton = form.querySelector('button[type="submit"]'); // Select the submit button
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  // Disable the submit button to prevent multiple submissions
+  // Disable the submit button to prevent multiple clicks
+  const submitButton = form.querySelector('button[type="submit"]');
   submitButton.disabled = true;
-  submitButton.textContent = "Submitting..."; // Optionally change the button text
 
   // Convert the canvas2 content to Base64
   const signatureDataUrl = canvas2.toDataURL();
@@ -548,11 +547,12 @@ form.addEventListener("submit", function (e) {
     })
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error);
-      alert("There was an error with the registration. Please try again.");
+      alert(
+        "There was an error with the registration. Please try again."
+      );
 
-      // Re-enable the button if there's an error
+      // Re-enable the submit button if there's an error
       submitButton.disabled = false;
-      submitButton.textContent = "Submit"; // Reset the button text
     });
 });
 
