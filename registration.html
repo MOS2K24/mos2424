@@ -13,6 +13,7 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/main.css" />
     <style>
         #file-upload-container {
             position: relative;
@@ -62,7 +63,6 @@
             color: rgb(212, 175, 55);
         }
     </style>
-    <link rel="stylesheet" href="css/main.css" />
     <title>MOS2K24</title>
   </head>
   <body>
@@ -104,11 +104,7 @@
               required
             />
           </div>
-          <div class="mb-3">
-            <label style="color: #b08d2a" for="email" class="form-label"
-              >Email address</label
-            >
-            div class="mb-3" id="file-upload-container">
+          <div class="mb-3" id="file-upload-container">
             <label style="color: #b08d2a" for="pic" class="form-label"
               >Your Favorite Picture</label
             >
@@ -121,6 +117,10 @@
               required
             />
         </div>
+          <div class="mb-3">
+            <label style="color: #b08d2a" for="email" class="form-label"
+              >Email address</label
+            >
             <input
               type="email"
               class="form-control"
@@ -178,7 +178,6 @@
                 <div class="optionDep" data-value="OGV">OGV</div>
                 <div class="optionDep" data-value="IGT">IGT</div>
                 <div class="optionDep" data-value="OGT">OGT</div>
-                <div class="optionDep" data-value="F&L">F&L</div>
                 <div class="optionDep" data-value="MKT&IM">MKT&IM</div>
                 <div class="optionDep" data-value="BD&EWA">BD&EWA</div>
                 <div class="optionDep" data-value="TM">TM</div>
@@ -339,7 +338,7 @@
             <label style="color: white" class="form-check-label" for="terms"
               >I agree to the
               <a
-                href="Indemity_from.html"
+                href="_Indemnity Form MOS 2k24.pdf"
                 style="color: rgb(212, 175, 55); text-decoration: none"
                 target="_blank"
                 >Terms of Use</a
@@ -492,7 +491,7 @@ document.getElementById("clear-btn").addEventListener("click", () => {
 
     </script>
     <script>
-    const form = document.getElementById("registration-form");
+       const form = document.getElementById("registration-form");
     const canvas2 = document.getElementById("signature-pad");
     form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -526,7 +525,7 @@ document.getElementById("clear-btn").addEventListener("click", () => {
         );
       });
   });
-      </script>
+          </script>
       <script>
         function validatePhoneInput(input) {
     const prefix = '+216';
@@ -555,46 +554,5 @@ document.getElementById("clear-btn").addEventListener("click", () => {
     }
   }
       </script>
-    <script>
-        const form = document.getElementById("registration-form");
-        const canvas2 = document.getElementById("signature-pad");
-        const fileInput2 = document.getElementById("file-upload-input");
-        form.addEventListener("submit", function (e) {
-        e.preventDefault();
-    
-        // Convert the canvas2 content to Base64
-        const signatureDataUrl = canvas2.toDataURL();
-        const file = fileInput2.files[0];
-        const reader = new FileReader();
-        const picDataUrl = reader.result;
-    
-        // Append the signature data to the FormData object
-        const data = new FormData(form);
-        data.append("signature", signatureDataUrl);
-        data.append("pic", picDataUrl);
-    
-        // Send the form data using fetch
-        const action = e.target.action;
-        fetch(action, {
-          method: "POST",
-          body: data,
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json(); // or response.text() if the server returns plain text
-          })
-          .then((data) => {
-            alert("Success");
-          })
-          .catch((error) => {
-            console.error("There was a problem with the fetch operation:", error);
-            alert(
-              "There was an error with the registration. Please try again."
-            );
-          });
-      });
-          </script>
   </body>
 </html>
