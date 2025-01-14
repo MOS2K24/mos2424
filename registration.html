@@ -15,53 +15,53 @@
     />
     <link rel="stylesheet" href="css/main.css" />
     <style>
-        #file-upload-container {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            width: 100%; /* Ensure it takes full width */
-        }
+      #file-upload-container {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        width: 100%; /* Ensure it takes full width */
+      }
 
-        #file-upload-input {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-        }
+      #file-upload-input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+      }
 
-        #file-upload-label {
-            display: flex;
-            align-items: center; /* Vertically align icon and text */
-            padding: .375rem .75rem;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: rgb(212, 175, 55);
-            background-color: transparent;
-            border: 1px solid rgb(212, 175, 55);
-            border-radius: .25rem;
-            text-align: left;
-            cursor: pointer;
-            justify-content: space-between; /* Space between text and icon */
-        }
+      #file-upload-label {
+        display: flex;
+        align-items: center; /* Vertically align icon and text */
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: rgb(212, 175, 55);
+        background-color: transparent;
+        border: 1px solid rgb(212, 175, 55);
+        border-radius: 0.25rem;
+        text-align: left;
+        cursor: pointer;
+        justify-content: space-between; /* Space between text and icon */
+      }
 
-        #file-upload-label:focus {
-            outline: none;
-            box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
-            border-color: rgb(212, 175, 55);
-        }
+      #file-upload-label:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        border-color: rgb(212, 175, 55);
+      }
 
-        #file-upload-label::after {
-            content: "\f093"; /* Upload icon from Font Awesome */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: rgb(212, 175, 55);
-        }
+      #file-upload-label::after {
+        content: "\f093"; /* Upload icon from Font Awesome */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: rgb(212, 175, 55);
+      }
     </style>
     <title>MOS2K24</title>
   </head>
@@ -116,7 +116,7 @@
               placeholder="Google Drive Link"
               required
             />
-        </div>
+          </div>
           <div class="mb-3">
             <label style="color: #b08d2a" for="email" class="form-label"
               >Email address</label
@@ -168,10 +168,7 @@
             />
           </div>
           <div class="mb-3">
-            <label
-              style="color: #b08d2a"
-              for="CIN"
-              class="form-label"
+            <label style="color: #b08d2a" for="CIN" class="form-label"
               >CIN</label
             >
             <input
@@ -189,7 +186,7 @@
             <label style="color: #b08d2a" for="subject" class="form-label"
               >Department</label
             >
-            <div class="custom-select" >
+            <div class="custom-select">
               <div class="select-button" id="selectButtonDep">Select</div>
               <div class="select-options" id="selectOptionsDep">
                 <div class="optionDep" data-value="IGV">IGV</div>
@@ -217,9 +214,7 @@
             <div class="custom-select">
               <div class="select-button" id="selectButtonPos">Select</div>
               <div class="select-options" id="selectOptionsPos">
-                <div class="optionPos" data-value="Newbie">
-                    Newbie
-                  </div>
+                <div class="optionPos" data-value="Newbie">Newbie</div>
                 <div class="optionPos" data-value="Members Staying">
                   Members Staying
                 </div>
@@ -229,13 +224,13 @@
                 <div class="optionPos" data-value="Middle Managers Current">
                   Middle Managers Current
                 </div>
-                
+
                 <div class="optionPos" data-value="Middle Managers Select">
                   Middle Managers Select
                 </div>
                 <div class="optionPos" data-value="Middle Managers Leaving">
-                    Middle Managers Leaving
-                  </div>
+                  Middle Managers Leaving
+                </div>
               </div>
               <input
                 type="hidden"
@@ -372,19 +367,20 @@
             <canvas id="signature-pad" width="400" height="200"></canvas>
             <button id="clear-btn">Clear</button>
           </div>
-          <button type="submit" id="submit-btn" class="btn btn-primary w-100" disabled>Submit</button>
+          <button type="submit" id="submit-btn" class="btn btn-primary w-100">
+            Submit
+          </button>
         </form>
       </div>
     </main>
     <script>
-  const termsCheckbox = document.getElementById("terms");
-  const submitButton = document.getElementById("submit-btn");
+      const termsCheckbox = document.getElementById("terms");
+      const submitButton = document.getElementById("submit-btn");
 
-  termsCheckbox.addEventListener("change", () => {
-    submitButton.disabled = !termsCheckbox.checked;
-  });
-
-</script>
+      termsCheckbox.addEventListener("change", () => {
+        submitButton.disabled = !termsCheckbox.checked;
+      });
+    </script>
 
     <script>
       const menuToggle = document.getElementById("menu-toggle");
@@ -445,137 +441,138 @@
       );
     </script>
     <script>
-      
       const canvas = document.getElementById("signature-pad");
-const context = canvas.getContext("2d");
-let drawing = false;
+      const context = canvas.getContext("2d");
+      let drawing = false;
 
-// Set initial drawing properties
-context.lineWidth = 3;
-context.lineCap = "round";
-context.strokeStyle = "#D4AF37"; // Gold color for signature
+      // Set initial drawing properties
+      context.lineWidth = 3;
+      context.lineCap = "round";
+      context.strokeStyle = "#D4AF37"; // Gold color for signature
 
-// Function to get touch coordinates
-function getTouchPos(touchEvent) {
-  const rect = canvas.getBoundingClientRect();
-  return {
-    x: touchEvent.touches[0].clientX - rect.left,
-    y: touchEvent.touches[0].clientY - rect.top,
-  };
-}
+      // Function to get touch coordinates
+      function getTouchPos(touchEvent) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+          x: touchEvent.touches[0].clientX - rect.left,
+          y: touchEvent.touches[0].clientY - rect.top,
+        };
+      }
 
-// Start drawing
-canvas.addEventListener("mousedown", (e) => {
-  drawing = true;
-  context.beginPath();
-  context.moveTo(e.offsetX, e.offsetY);
-});
+      // Start drawing
+      canvas.addEventListener("mousedown", (e) => {
+        drawing = true;
+        context.beginPath();
+        context.moveTo(e.offsetX, e.offsetY);
+      });
 
-canvas.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-  drawing = true;
-  const touchPos = getTouchPos(e);
-  context.beginPath();
-  context.moveTo(touchPos.x, touchPos.y);
-});
+      canvas.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        drawing = true;
+        const touchPos = getTouchPos(e);
+        context.beginPath();
+        context.moveTo(touchPos.x, touchPos.y);
+      });
 
-// Draw on canvas
-canvas.addEventListener("mousemove", (e) => {
-  if (drawing) {
-    context.lineTo(e.offsetX, e.offsetY);
-    context.stroke();
-  }
-});
+      // Draw on canvas
+      canvas.addEventListener("mousemove", (e) => {
+        if (drawing) {
+          context.lineTo(e.offsetX, e.offsetY);
+          context.stroke();
+        }
+      });
 
-canvas.addEventListener("touchmove", (e) => {
-  e.preventDefault();
-  if (drawing) {
-    const touchPos = getTouchPos(e);
-    context.lineTo(touchPos.x, touchPos.y);
-    context.stroke();
-  }
-});
+      canvas.addEventListener("touchmove", (e) => {
+        e.preventDefault();
+        if (drawing) {
+          const touchPos = getTouchPos(e);
+          context.lineTo(touchPos.x, touchPos.y);
+          context.stroke();
+        }
+      });
 
-// Stop drawing
-canvas.addEventListener("mouseup", () => {
-  drawing = false;
-});
+      // Stop drawing
+      canvas.addEventListener("mouseup", () => {
+        drawing = false;
+      });
 
-canvas.addEventListener("touchend", () => {
-  drawing = false;
-});
+      canvas.addEventListener("touchend", () => {
+        drawing = false;
+      });
 
-// Clear the canvas
-document.getElementById("clear-btn").addEventListener("click", () => {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-});
-
+      // Clear the canvas
+      document.getElementById("clear-btn").addEventListener("click", () => {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      });
     </script>
     <script>
-   const form = document.getElementById("registration-form");
-    const canvas2 = document.getElementById("signature-pad");
-    form.addEventListener("submit", function (e) {
-    e.preventDefault();
+      const form = document.getElementById("registration-form");
+      const canvas2 = document.getElementById("signature-pad");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        submitButton.disabled = true;
+        // Convert the canvas2 content to Base64
+        const signatureDataUrl = canvas2.toDataURL();
 
-    // Convert the canvas2 content to Base64
-    const signatureDataUrl = canvas2.toDataURL();
+        // Append the signature data to the FormData object
+        const data = new FormData(form);
+        data.append("signature", signatureDataUrl);
 
-    // Append the signature data to the FormData object
-    const data = new FormData(form);
-    data.append("signature", signatureDataUrl);
-
-    // Send the form data using fetch
-    const action = e.target.action;
-    fetch(action, {
-      method: "POST",
-      body: data,
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json(); // or response.text() if the server returns plain text
-      })
-      .then((data) => {
-        alert("Success");
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
-        alert(
-          "There was an error with the registration. Please try again."
-        );
+        // Send the form data using fetch
+        const action = e.target.action;
+        fetch(action, {
+          method: "POST",
+          body: data,
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json(); // or response.text() if the server returns plain text
+          })
+          .then((data) => {
+            alert("Success");
+            window.location.replace("thank_you.html");
+          })
+          .catch((error) => {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+            alert(
+              "There was an error with the registration. Please try again."
+            );
+          });
       });
-  });
+    </script>
+    <script>
+      function validatePhoneInput(input) {
+        const prefix = "+216";
+        let value = input.value;
 
-          </script>
-      <script>
-        function validatePhoneInput(input) {
-    const prefix = '+216';
-    let value = input.value;
+        // Make sure the value starts with '+216' and only allow the user to input 8 digits afterward
+        if (!value.startsWith(prefix)) {
+          value = prefix + value.replace(prefix, "");
+        }
 
-    // Make sure the value starts with '+216' and only allow the user to input 8 digits afterward
-    if (!value.startsWith(prefix)) {
-      value = prefix + value.replace(prefix, '');
-    }
+        // Limit the input to 11 characters (including +216)
+        if (value.length > 12) {
+          value = value.slice(0, 12);
+        }
 
-    // Limit the input to 11 characters (including +216)
-    if (value.length > 12) {
-      value = value.slice(0, 12);
-    }
+        input.value = value;
+      }
 
-    input.value = value;
-  }
-
-  // Ensure the initial value is correct for both inputs
-  document.getElementById('phone').value = '+216';
-  document.getElementById('CIN').value = '';
-  document.getElementById('emergencyPhone').value = '+216';
-  function allowOnlyNumbers(event) {
-    const charCode = event.which || event.keyCode;
-    if (charCode < 48 || charCode > 57) {
-      event.preventDefault();
-    }
-  }
-      </script>
+      // Ensure the initial value is correct for both inputs
+      document.getElementById("phone").value = "+216";
+      document.getElementById("CIN").value = "";
+      document.getElementById("emergencyPhone").value = "+216";
+      function allowOnlyNumbers(event) {
+        const charCode = event.which || event.keyCode;
+        if (charCode < 48 || charCode > 57) {
+          event.preventDefault();
+        }
+      }
+    </script>
   </body>
 </html>
