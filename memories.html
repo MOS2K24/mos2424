@@ -108,6 +108,14 @@
     <img src="img/c9a20c97-38a7-4fa0-885c-860f6dddeb6c.jpg" alt="Image 2" class="floating-image">
     <img src="img/ecc89751-a577-4632-bee3-541ee646f46e.jpg" alt="Image 3" class="floating-image">
   </div>
-      
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.style.display =
+        mobileMenu.style.display === "block" ? "none" : "block";
+    });
+  </script>
 </body>
 </html>
